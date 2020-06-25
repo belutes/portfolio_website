@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [
     'uses' => 'PortfolioController@getPortfolioHome',
-    'as' => 'index'
+    'as' => 'index',
 ]);
+
+// Route::get('/sign-up', [
+//     'uses' => "PortfolioController@getSignUp",
+//     'as' => 'sign_up',
+// ]);
+
+// Route::post('/sign-up', [
+//     'uses' => 'PortfolioController@postSignUp',
+//     'as' => 'post_sign_up',
+// ]);
+
+// Route::get('/login', [
+//     'uses' => 'PortfolioController@getLogin',
+//     'as' => 'log-in'
+// ]);
+
+// Route::post('/login', [
+//     'uses' => 'PortfolioController@postLogin',
+//     'as' => 'post_login'
+// ]);
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

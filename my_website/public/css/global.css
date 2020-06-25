@@ -1,13 +1,27 @@
 
 
 body{
-    background-image: url("/images/0261.png");
-    background-size: 100%;
+    background-image: url("/images/0261.png");;
+    background-size: cover;
+}
+
+.image {
+    -webkit-animation:spin 1s linear 1;
+    -moz-animation:spin 1s linear 1;
+    animation:spin 1s linear 1;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotateY(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotateY(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotateY(360deg); transform:rotateY(360deg); } }
+
+.nav-back{
+    background-image: url("/images/parchment-background-adobe-300x300.jpeg");
 }
 
 .navBar{
     background-color: #DEB887;
 }
+
 .navbar a{
     color: #A52A2A;
 }

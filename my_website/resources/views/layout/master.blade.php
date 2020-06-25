@@ -12,8 +12,8 @@
     <title>Brian Lutes</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light navBar">
-        <a class="ml-2 navbar-brand" href="#"><img src="/images/113042-84.png"/></a>
+    <nav class="nav-back navbar navbar-expand-lg navbar-light navBar">
+        <a class="ml-2 navbar-brand" href="{{ route('index') }}"><img class="image" src="/images/113042-84.png"/></a>
         <button class="navbar-toggler" id="nav-button" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="{{ route('index') }}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
@@ -32,12 +32,37 @@
           </ul>
           <div class="topnav">
             <div class="login-container">
-              <form action="/action_page.php">
-                <input type="text" placeholder="Username" name="username">
-                <input type="text" placeholder="Password" name="psw">
-                <button type="submit">Login</button>
-                <a href="#">Sign Up</a>
-              </form>
+              <ul class="navbar-nav ml-auto">
+                <!-- Authentication Links -->
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->username }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
             </div>
           </div>
         </div>
@@ -48,7 +73,7 @@
    </main>
     <hr>
     <footer>
-        <div class="text-center">
+        <div class="footer text-center">
             <small class="text-center">&copy; Copyright 2020 Brian Lutes</small><br>
             <small><a href="https://www.vecteezy.com/free-vector/background-grey">Background Grey Vectors by Vecteezy</a></small>
         </div>
